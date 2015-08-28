@@ -1,0 +1,22 @@
+{
+  "name": "catchPhrase",
+  "version": "0.0.0",
+  "homepage": "https://github.com/inei/catchPhrase",
+  "authors": [
+    "inei <iancnei@gmail.com>"
+  ],
+  "description": "An app that will allow the user to play Catchphrase.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3"
+  }
+}
