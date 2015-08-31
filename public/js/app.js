@@ -1,21 +1,34 @@
+var localData; // local copy of the database so we can manipulate it without worrying about affecting the database
+var localIndex;
+
+function determineDescription()
+{
+	localIndex = Math.floor(Math.random() * localData.length);
+}
+
+function renderDescription(index)
+{
+	$('#descriptionPlaceholder').empty();
+	var descriptionTemplate = _.template($("#descriptionTemplate").html());
+	var descriptionHTML = descriptionTemplate(localData[index]);
+	$('#descriptionPlaceholder').append(descriptionHTML);
+}
+
 function renderPhrases(data)
 {
 	$('#phraseListPlaceholder').empty();
-	//var phrases = JSON.parse(data); data;
+	localData = data;
 	var phraseTemplate = _.template($("#phraseListTemplate").html());
-	var descriptionTemplate = _.template($("#descriptionTemplate").html());
 	data.forEach(function(phrase)
 		{
 			var phraseHTML = phraseTemplate(phrase);
 			$('#phraseListPlaceholder').append(phraseHTML);
 		}
 	);
-	data.forEach(function(phrase)
-		{
-			var descriptionHTML = descriptionTemplate(phrase);
-			$('#descriptionPlaceholder').append(descriptionHTML);
-		}
-	);
+	if($('#descriptionPlaceholder').is(':empty'))
+	{
+		renderDescription(0);
+	}
 }
 
 function getPhrases()
