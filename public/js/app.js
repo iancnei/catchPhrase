@@ -15,20 +15,34 @@ function renderDescription(index)
 	$('#descriptionPlaceholder').append(descriptionHTML);
 }
 
+function switchDescription()
+{
+	$("#userAnswer").val("");
+	renderDescription(determineDescription());
+}
+
 function checkAnswer()
 {
 	var userAnswer = $("#userAnswer").val().toLowerCase();
+	$("#response").empty();
 	if (userAnswer === localData[localIndex].phrase.toLowerCase())
 	{
-		$("#response").empty();
-		$("#response").append('<div id="nextButton"><div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">Next Phrase</span></button>Correct</div></div>');
+		
 		localData.splice(localIndex, 1);
+		if(localData.length === 0)
+		{
+			$("#descriptionTitle").text("Congratulations, You knew all the Phrases!");
+			switchDescription();
+		}
+		else
+		{
+			$("#response").append('<div id="nextButton"><div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">Next Phrase</span></button>Correct</div></div>');
+		}
 	}
 	else
 	{
-		$("#response").empty();
 		$("#response").append('<div class="alert alert-warning" role="alert">Incorrect</div>');
-	}	
+	}
 }
 
 function renderPhrases(data)
@@ -109,9 +123,17 @@ $(function()
 				checkAnswer();
 			}
 		);
+		$("#userAnswer").on('keypress', function(event)
+			{
+				if (event.keyCode === 13)
+				{
+					checkAnswer();
+				}
+			}
+		);
 		$("#response").on('click', function(event)
 			{
-				renderDescription(determineDescription());
+				switchDescription();
 			}
 		);
 	}
