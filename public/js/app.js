@@ -1,13 +1,19 @@
 function renderPhrases(data)
 {
-	$('#phrase-placeholder').empty();
-	//var phrases = JSON.parse(data);
-	var phrases = data;
-	var phraseTemplate = _.template($("#phrase-template").html());
-	phrases.forEach(function(phrase)
+	$('#phraseListPlaceholder').empty();
+	//var phrases = JSON.parse(data); data;
+	var phraseTemplate = _.template($("#phraseListTemplate").html());
+	var descriptionTemplate = _.template($("#descriptionTemplate").html());
+	data.forEach(function(phrase)
 		{
 			var phraseHTML = phraseTemplate(phrase);
-			$('#phrase-placeholder').append(phraseHTML);
+			$('#phraseListPlaceholder').append(phraseHTML);
+		}
+	);
+	data.forEach(function(phrase)
+		{
+			var descriptionHTML = descriptionTemplate(phrase);
+			$('#descriptionPlaceholder').append(descriptionHTML);
 		}
 	);
 }
@@ -63,7 +69,7 @@ $(function()
 					{
 						getPhrases();
 						$("#updatePhrase")[0].reset();
-						$("#updatePhrase").append("Phrase updated."); // find some way to get this to fade out after a little bit
+						$("#updatePhrase").append("Description updated."); // find some way to get this to fade out after a little bit
 					}	
 				});
 			}
