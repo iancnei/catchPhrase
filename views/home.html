@@ -19,13 +19,34 @@
 	  <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
-	<h1>CatchPhrase</h1>
-	<ul id="phrase-placeholder"></ul>
+	<div class="container">
+		<h1>CatchPhrase</h1>
 
+		<h2>Add a Phrase</h2>
+		<form class="form-inline" id="createPhrase">
+			<input type="text" class="form-control" placeholder="phrase" name="phrase">
+			<input type="text" class="form-control" placeholder="description" name="description">
+			<button type="submit" class="btn btn-default">Add Phrase/Description</button>
+		</form>
 
+		<h2>Update a Phrase</h2>
+		<form class="form-inline" id="updatePhrase">
+			<input type="text" class="form-control" placeholder="phrase" name="phrase" id="updatePhr">
+			<input type="text" class="form-control" placeholder="description" name="description" id="updateDes">
+			<button type="submit" class="btn btn-default">Update Phrase/Description</button>
+		</form>
+
+		<br>
+		<h2>Phrase List</h2>
+		<ul id="phrase-placeholder"></ul>
+	</div>
 
 	<script type="text/template" id="phrase-template">
-	  <li> Phrase: <%= phrase %>, Description: <%= description %> 
+	  <li class='list-group-item'> 
+		  <b>Phrase</b>: <%= phrase %></br>
+		  <b>Description</b>: <%= description %> 
+		  <button data-_id="<%= _id %>" onclick="deletePhrase(this)" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  </li>
 	</script>
 </body>
 </html>
