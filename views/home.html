@@ -28,7 +28,13 @@
 
 		<div id="descriptionPlaceholder"></div>
 		</br>
-		<input type="text" class="form-control" placeholder="Your answer" aria-describedby="basic-addon2">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Your answer" id="userAnswer">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" id="userGuess">Guess!</button>
+			</span>
+		</div>
+		<div id="response"></div>
 		
 		<hr>
 
@@ -41,7 +47,7 @@
 				<input type="text" class="form-control" placeholder="Description" name="description">
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-default">Add Phrase and its Description</button>
+				<button type="submit" class="btn btn-default">Add Phrase and Its Description</button>
 			</div>
 		</form>
 

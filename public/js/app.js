@@ -4,6 +4,7 @@ var localIndex;
 function determineDescription()
 {
 	localIndex = Math.floor(Math.random() * localData.length);
+	return localIndex;
 }
 
 function renderDescription(index)
@@ -12,6 +13,22 @@ function renderDescription(index)
 	var descriptionTemplate = _.template($("#descriptionTemplate").html());
 	var descriptionHTML = descriptionTemplate(localData[index]);
 	$('#descriptionPlaceholder').append(descriptionHTML);
+}
+
+function checkAnswer()
+{
+	var userAnswer = $("#userAnswer").val().toLowerCase();
+	if (userAnswer === localData[localIndex].phrase.toLowerCase())
+	{
+		$("#response").empty();
+		$("#response").append('<div id="nextButton"><div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">Next Phrase</span></button>Correct</div></div>');
+		localData.splice(localIndex, 1);
+	}
+	else
+	{
+		$("#response").empty();
+		$("#response").append('<div class="alert alert-warning" role="alert">Incorrect</div>');
+	}	
 }
 
 function renderPhrases(data)
@@ -27,7 +44,7 @@ function renderPhrases(data)
 	);
 	if($('#descriptionPlaceholder').is(':empty'))
 	{
-		renderDescription(0);
+		renderDescription(determineDescription());
 	}
 }
 
@@ -85,6 +102,16 @@ $(function()
 						$("#updatePhrase").append("Description updated."); // find some way to get this to fade out after a little bit
 					}	
 				});
+			}
+		);
+		$("#userGuess").on('click', function(event)
+			{
+				checkAnswer();
+			}
+		);
+		$("#response").on('click', function(event)
+			{
+				renderDescription(determineDescription());
 			}
 		);
 	}
