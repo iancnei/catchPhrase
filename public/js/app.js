@@ -93,8 +93,9 @@ $(function()
 					function(response)
 					{
 						getPhrases();
+						$("#createResponse").empty();
+						$("#createResponse").append('<div class="alert alert-success" role="alert">Phrase: "' + $("#createPhr").val() + '" Created</div>');
 						$("#createPhrase")[0].reset();
-						$("#createPhrase").append("Phrase added."); // find some way to get this to fade out after a little bit
 					}
 				);
 			}
@@ -112,9 +113,10 @@ $(function()
 					success: function(res)
 					{
 						getPhrases();
+						$("#updateResponse").empty();
+						$("#updateResponse").append('<div class="alert alert-success" role="alert">Phrase "' + $('#updatePhr').val() + '" Updated</div>');
 						$("#updatePhrase")[0].reset();
-						$("#updatePhrase").append("Description updated."); // find some way to get this to fade out after a little bit
-					}	
+					}
 				});
 			}
 		);

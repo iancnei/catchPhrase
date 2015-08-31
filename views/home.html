@@ -41,14 +41,15 @@
 		<h3>Add a Phrase</h2>
 		<form id="createPhrase">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Phrase" name="phrase">
+				<input type="text" class="form-control" placeholder="Phrase" name="phrase" id="createPhr">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Description" name="description">
+				<input type="text" class="form-control" placeholder="Description" name="description" id="createDes">
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-default">Add Phrase and Its Description</button>
 			</div>
+			<div id="createResponse"></div>
 		</form>
 
 		<hr>
@@ -64,6 +65,7 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-default">Update Description</button>
 			</div>
+			<div id="updateResponse"></div>
 		</form>
 
 		<hr>
